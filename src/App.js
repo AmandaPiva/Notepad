@@ -12,7 +12,7 @@ class App extends Component {
             key: "1245",
             titulo: "Lista de tarefas",
             data: new Date(2023, 4, 28),
-            nota: "1-Arrumar meu quarto;<br>2-Fazer almoço;<br>3-Limpar a Garagem"
+            nota: `1-Arrumar meu quarto hoje;Fazer lição`
           },
           {
             key: "4785",
@@ -20,44 +20,75 @@ class App extends Component {
             data: new Date(2023, 4, 28),
             nota: " A aula de matemática teve..."
           }
-        ]
+        ],
+        novaNota: { //nosso novo objeto que armazenará nossa nova anotação vindo do form
+          titulo: '',
+          nota: ''
+        }
     }
 
     //função do botão adiciona nota
-    adicionarNota = () => {
+    adicionarNota = evento => { //recebe um evento como parâmetro
       console.log("Adicionando Nota");
+      evento.preventDefault();
 
-      //criando um objeto novo igual o anterior para adicionar a nova nota
-      const addNota = {
-        key: "2458",
-        titulo: "Lambretes",
-        data: new Date(),
-        nota: "Atualizar projeto amanhã."
-      }
+      const addNota = {...this.state.novaNota, data: new Date()} //adiciona a nota no objto vazio criado acima 
 
-      //chamando o state
+      //muda o estado adicionando as infor dos inputs e adicionando no array de objetos com os novos dados
       this.setState({
-        notes: [...this.state.notes, addNota]
+        notes: [...this.state.notes, addNota],
+        novaNota: {titulo: '', nota: ''}
       })
     } 
 
+    //função que dispara eventos (onChange) ao digitar nos campos
+    anotando = evento => {
+      const {name, value} = evento.target;
+      this.setState({novaNota: {...this.state.novaNota, [name]: value}}); //pega os dados digitados nos inputs
+    }
+
+    //função remover nota
+    removerNota = nota => {
+      let listNotas = this.state.notes;
+      listNotas = listNotas.filter(c => c !== nota);
+
+      this.setState({notes: listNotas}); //atualizando o estado do array de notas
+
+    }
+
     //função render chamando o state e renderizando cada propriedade
     render(){
+      
       return ( //retornando no DOM
           <div className='App'>
-            <h1>Notepad</h1>
+            <div className='listaNotas'>
+              <h1>Notepad</h1>
 
-            {this.state.notes.map((propNota) => (
-              <Notepad
-                key= {propNota.key}
-                titulo= {propNota.titulo}
-                data= {propNota.data}>
-                   {propNota.nota} 
+                {this.state.notes.map((propNota, indice) => (
+                <Notepad
+                  key= {propNota.key}
+                  titulo= {propNota.titulo}
+                  data= {propNota.data}
+                  onRemove= {this.removerNota.bind(this, propNota)} /*propriedade remover nota */>
+                    {propNota.nota}
                 </Notepad>
-            ))}
+              ))}
+            </div>
+            
 
-            <button>Adicionar nota</button>
-          
+            <div className='form'>
+              <form method='post' onSubmit={this.adicionarNota} className='novaNota'>
+                <div className='titulo'>
+                  <input required type="text" name= "titulo" value={this.state.novaNota.titulo} onChange={this.anotando} placeholder='Título...'/>
+                </div>
+
+                <div className='textarea'>
+                  <textarea style={{whiteSpace: 'pre-wrap'}} name='nota' value={this.state.novaNota.nota} onChange={this.anotando} placeholder='Insira sua nota aqui...' rows="10" />         
+                </div>
+
+                <button onClick={this.adicionarNota} className='addnota'>Adicionar nota</button>
+              </form>      
+            </div>
           </div>
         )
     }

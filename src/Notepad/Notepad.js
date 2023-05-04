@@ -4,8 +4,10 @@ import React from 'react';
 //Meu componente
 const Notepad = (props) => (
     <div className='Comp'>
-        <div>{props.titulo}</div>
+        <div className='titulo'>{props.titulo}</div>
+        <p className="nota">{props.children}</p>
         <p>{props.data.toString()}</p>
+        <button onClick={props.onRemove}>&times;</button>
     </div>
 );
 
