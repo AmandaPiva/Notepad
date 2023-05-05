@@ -1,0 +1,46 @@
+form{
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-left: 27%;
+}
+
+.input{
+    width: 29em;
+    height: 2.8em;
+    padding-left: 1em;
+
+    border-style: solid;
+    border-color: #3C038C;
+    border-radius: 5px;
+}
+
+.textarea{
+    margin-top: 12%;
+}
+
+.text{
+    width: 29em;
+    height: 25em;
+
+    padding: 1rem;
+
+    border-style: solid;
+    border-color: #3C038C;
+    border-radius: 5px;
+}
+
+.addnota{
+    background-color: #3C038C;
+    
+    border-radius: 5px;
+    border-style: none;
+    width: 25em;
+    height: 2.9em;
+
+    margin-left: 10%;
+    margin-top: 8%;
+
+    color: #ffff;
+    cursor:pointer;
+}

@@ -79,11 +79,11 @@ class App extends Component {
             <div className='form'>
               <form method='post' onSubmit={this.adicionarNota} className='novaNota'>
                 <div className='titulo'>
-                  <input required type="text" name= "titulo" value={this.state.novaNota.titulo} onChange={this.anotando} placeholder='Título...'/>
+                  <input className='input' required type="text" name= "titulo" value={this.state.novaNota.titulo} onChange={this.anotando} placeholder='Título...'/>
                 </div>
 
                 <div className='textarea'>
-                  <textarea style={{whiteSpace: 'pre-wrap'}} name='nota' value={this.state.novaNota.nota} onChange={this.anotando} placeholder='Insira sua nota aqui...' rows="10" cols="40"/>         
+                  <textarea className='text' style={{whiteSpace: 'pre-wrap'}} name='nota' value={this.state.novaNota.nota} onChange={this.anotando} placeholder='Insira sua nota aqui...' rows="10" cols="40"/>         
                 </div>
 
                 <button onClick={this.adicionarNota} className='addnota'>Adicionar nota</button>
