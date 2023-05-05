@@ -83,7 +83,7 @@ class App extends Component {
                 </div>
 
                 <div className='textarea'>
-                  <textarea style={{whiteSpace: 'pre-wrap'}} name='nota' value={this.state.novaNota.nota} onChange={this.anotando} placeholder='Insira sua nota aqui...' rows="10" />         
+                  <textarea style={{whiteSpace: 'pre-wrap'}} name='nota' value={this.state.novaNota.nota} onChange={this.anotando} placeholder='Insira sua nota aqui...' rows="10" cols="40"/>         
                 </div>
 
                 <button onClick={this.adicionarNota} className='addnota'>Adicionar nota</button>
